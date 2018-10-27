@@ -1,0 +1,31 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TaxiUnicoServer.Models.Classes
+{
+    public class Vehiculo
+    {
+        [Key, Required]
+        public Guid Id { get; set; }
+
+        [Required]
+        public string Placa { get; set; }
+
+        [Required]
+        public Guid TaxistaId { get; set; }
+
+        [Required, ForeignKey("TaxistaId")]
+        public Taxista Taxista { get; set; }
+
+        [Required]
+        public string Marca { get; set; }
+
+        [Required]
+        public string Modelo { get; set; }
+
+        [Required]
+        public string Color { get; set; }
+        public string PolizaSeguro { get; set; }
+    }
+}
