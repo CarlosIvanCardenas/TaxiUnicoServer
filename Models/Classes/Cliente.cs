@@ -26,5 +26,7 @@ namespace TaxiUnicoServer.Models.Classes
         public string Telefono { get; set; }
 
         public string Direccion { get; set; }
+
+	public string Estatus { get; set; }
     }
 }

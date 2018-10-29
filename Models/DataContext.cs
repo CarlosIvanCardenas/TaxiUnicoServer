@@ -17,6 +17,14 @@ namespace TaxiUnicoServer.Models
         {
             modelBuilder.Entity<TarjetaCredito>()
                 .HasKey(x => new { x.ClienteId, x.NumeroTarjeta });
+
+	    modelBuilder.Entity<Cliente>()
+            	.Property(x => x.Estatus)
+            	.HasDefaultValue("Activo");
+
+	    modelBuilder.Entity<Taxista>()
+                .Property(x => x.Estatus)
+                .HasDefaultValue("Activo");
         }
     }
 }
