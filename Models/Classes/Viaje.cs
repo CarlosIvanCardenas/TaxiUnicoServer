@@ -15,6 +15,7 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public string Destino { get; set; }
 
+         [Column(TypeName = "decimal(5, 2)")]
         public decimal Kilometros { get; set; }
 
         [Required]
@@ -29,13 +30,13 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public Guid VehiculoId { get; set; }
 
-        [Required, ForeignKey("VehiculoId")]
+        [ForeignKey("VehiculoId")]
         public Vehiculo Vehiculo { get; set; }
 
         [Required]
         public Guid ClienteId { get; set; }
 
-        [Required, ForeignKey("ClienteId")]
+        [ForeignKey("ClienteId")]
         public Cliente Cliente { get; set; }
 
         [Required]

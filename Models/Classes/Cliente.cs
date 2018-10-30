@@ -28,6 +28,6 @@ namespace TaxiUnicoServer.Models.Classes
 
         public string Direccion { get; set; }
 
-	public string Estatus { get; set; }
+	    public string Estatus { get; set; }
     }
 }

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaxiUnicoServer.Models;
 
 namespace TaxiUnicoServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181030152427_AddEstatus")]
+    partial class AddEstatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,8 +121,7 @@ namespace TaxiUnicoServer.Migrations
                     b.Property<string>("PrimerNombre")
                         .IsRequired();
 
-                    b.Property<decimal>("Puntuacion")
-                        .HasColumnType("decimal(2, 1)");
+                    b.Property<decimal>("Puntuacion");
 
                     b.Property<string>("SegundoNombre");
 
@@ -181,8 +182,7 @@ namespace TaxiUnicoServer.Migrations
 
                     b.Property<DateTime>("HoraSolicitud");
 
-                    b.Property<decimal>("Kilometros")
-                        .HasColumnType("decimal(5, 2)");
+                    b.Property<decimal>("Kilometros");
 
                     b.Property<int>("NumeroPasajeros");
 

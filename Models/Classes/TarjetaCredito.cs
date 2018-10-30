@@ -9,7 +9,7 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public Guid ClienteId { get; set;}
 
-        [Required, ForeignKey("ClienteId")]
+        [ForeignKey("ClienteId")]
         public Cliente Cliente { get; set; }
 
         [Required]

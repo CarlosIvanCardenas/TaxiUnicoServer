@@ -24,7 +24,7 @@ namespace TaxiUnicoServer.Controllers
             return _context.Administradores.ToList();
         }
 
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id}", Name = "GetAdminById")]
         public ActionResult<Administrador> GetById(Guid id)
         {
             var item = _context.Administradores.Find(id);
@@ -35,7 +35,7 @@ namespace TaxiUnicoServer.Controllers
             return item;
         }
 
-        [HttpGet("email/{email}", Name = "GetByEmail")]
+        [HttpGet("email/{email}", Name = "GetAdminByEmail")]
         public ActionResult<Administrador> GetByEmail(string email)
         {
             var item = _context.Administradores.SingleOrDefault(x => x.Correo == email);
@@ -49,11 +49,10 @@ namespace TaxiUnicoServer.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Administrador item)
         {
-            Console.WriteLine("ENTRO");
             _context.Administradores.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetById", new { id = item.Id }, item);
+            return CreatedAtRoute("GetAdminById", new { id = item.Id }, item);
         }
     }
 }

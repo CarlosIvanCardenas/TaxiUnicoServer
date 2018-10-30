@@ -28,20 +28,21 @@ namespace TaxiUnicoServer.Models.Classes
 
         public string Direccion { get; set; }
 
+        [Column(TypeName = "decimal(2, 1)")]
         public decimal Puntuacion { get; set; }
 
         //RegistradoPor
         [Required]
         public Guid AdministradorId { get; set; }
 
-        [Required, ForeignKey("AdministradorId")]
+        [ForeignKey("AdministradorId")]
         public Administrador Administrador { get; set; }
 
         [Required]
         public DateTime FechaRegistro { get; set; }
         
-	public DateTime FechaModificado { get; set; }
+	    public DateTime FechaModificado { get; set; }
 
-	public string Estatus { get; set; }
+	    public string Estatus { get; set; }
     }
 }

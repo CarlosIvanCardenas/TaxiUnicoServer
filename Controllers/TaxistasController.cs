@@ -24,7 +24,7 @@ namespace TaxiUnicoServer.Controllers
             return _context.Taxistas.ToList();
         }
 
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id}", Name = "GetTaxistaById")]
         public ActionResult<Taxista> GetById(Guid id)
         {
             var item = _context.Taxistas.Find(id);
@@ -35,7 +35,7 @@ namespace TaxiUnicoServer.Controllers
             return item;
         }
 
-        [HttpGet("email/{email}", Name = "GetByEmail")]
+        [HttpGet("email/{email}", Name = "GetTaxistaByEmail")]
         public ActionResult<Taxista> GetByEmail(string email)
         {
             var item = _context.Taxistas.SingleOrDefault(x => x.Correo == email);
@@ -49,11 +49,10 @@ namespace TaxiUnicoServer.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Taxista item)
         {
-            Console.WriteLine("ENTRO");
             _context.Taxistas.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetById", new { id = item.Id }, item);
+            return CreatedAtRoute("GetTaxistaById", new { id = item.Id }, item);
         }
     }
 }
