@@ -39,6 +39,9 @@ namespace TaxiUnicoServer.Models.Classes
 
         [Required]
         public DateTime FechaRegistro { get; set; }
-        public DateTime FechaModificado { get; set; }
+        
+	public DateTime FechaModificado { get; set; }
+
+	public string Estatus { get; set; }
     }
 }
