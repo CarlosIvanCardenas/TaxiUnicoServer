@@ -6,7 +6,7 @@ namespace TaxiUnicoServer.Models.Classes
 {
     public class Taxista
     {
-        [Key, Required]
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         [Required]
