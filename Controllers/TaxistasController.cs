@@ -54,5 +54,28 @@ namespace TaxiUnicoServer.Controllers
 
             return CreatedAtRoute("GetTaxistaById", new { id = item.Id }, item);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, Taxista item)
+        {
+            var taxista = _context.Taxistas.Find(id);
+            if (taxista == null)
+            {
+                return NotFound();
+            }
+
+            taxista.Correo = item.Correo;
+            taxista.Contraseña =  item.Contraseña;
+            taxista.PrimerNombre = item.PrimerNombre;
+            taxista.SegundoNombre = item.SegundoNombre;
+            taxista.Telefono = item.Telefono;
+            taxista.Direccion = item.Direccion;
+            taxista.FechaModificado = DateTime.Now;
+            taxista.Estatus = item.Estatus;
+
+            _context.Taxistas.Update(taxista);
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }

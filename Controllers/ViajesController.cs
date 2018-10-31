@@ -38,13 +38,54 @@ namespace TaxiUnicoServer.Controllers
         [HttpGet("vehiculo/{vehiculo}", Name = "GetViajeByVehiculo")]
         public ActionResult<List<Viaje>> GetByVehiculo(Guid vehiculo)
         {
-            return _context.Viajes.Where(x => x.VehiculoId == vehiculo).ToList();
+            return _context.Viajes
+                        .Where(x => x.VehiculoId == vehiculo)
+                        .ToList();
+        }
+
+        [HttpGet("taxista/{taxista}", Name = "GetViajeByTaxista")]
+        public ActionResult<List<Viaje>> GetByTaxista(Guid taxista)
+        {
+            var vehiculos = _context.Vehiculos.Where(x => x.TaxistaId == taxista).Include(x => x.Taxista).ToArray();
+            List<Viaje> viajes = new List<Viaje>();
+            foreach (var v in vehiculos)
+            {
+                viajes.AddRange(_context.Viajes.Where(x => x.VehiculoId == v.Id).Include(x => x.Cliente).ToList());
+            }
+            return viajes;
         }
 
         [HttpGet("cliente/{cliente}", Name = "GetViajeByCliente")]
         public ActionResult<List<Viaje>> GetByCliente(Guid cliente)
         {
-            return _context.Viajes.Where(x => x.ClienteId == cliente).ToList();
+            return _context.Viajes
+                        .Where(x => x.ClienteId == cliente)
+                        .Include(x => x.Cliente)
+                        .Include(x => x.Vehiculo)
+                            .ThenInclude(x => x.Taxista)
+                        .ToList();
+        }
+
+        [HttpGet("cliente/{cliente}/{fecha}", Name = "GetViajeByClienteFecha")]
+        public ActionResult<List<Viaje>> GetByClienteFecha(Guid cliente, DateTime fecha)
+        {
+            return _context.Viajes
+                        .Where(x => x.ClienteId == cliente && x.HoraPartida == fecha)
+                        .Include(x => x.Cliente)
+                        .Include(x => x.Vehiculo)
+                            .ThenInclude(x => x.Taxista)
+                        .ToList();
+        }
+
+        [HttpGet("cliente/{cliente}/{fechaP}/{fechaL}", Name = "GetViajeByClienteRangoFechas")]
+        public ActionResult<List<Viaje>> GetByClienteRangoFechas(Guid cliente, DateTime fechaP, DateTime fechaL)
+        {
+            return _context.Viajes
+                    .Where(x => x.ClienteId == cliente && x.HoraPartida > fechaP && x.HoraPartida < fechaL)
+                    .Include(x => x.Cliente)
+                        .Include(x => x.Vehiculo)
+                            .ThenInclude(x => x.Taxista)
+                    .ToList();
         }
 
         [HttpPost]

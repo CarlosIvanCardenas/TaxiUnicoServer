@@ -54,5 +54,27 @@ namespace TaxiUnicoServer.Controllers
 
             return CreatedAtRoute("GetClienteById", new { id = item.Id }, item);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, Cliente item)
+        {
+            var client = _context.Clientes.Find(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            client.Correo = item.Correo;
+            client.Contraseña =  item.Contraseña;
+            client.PrimerNombre = item.PrimerNombre;
+            client.SegundoNombre = item.SegundoNombre;
+            client.Telefono = item.Telefono;
+            client.Direccion = item.Direccion;
+            client.Estatus = item.Estatus;
+
+            _context.Clientes.Update(client);
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }
