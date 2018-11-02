@@ -32,6 +32,7 @@ namespace TaxiUnicoServer.Controllers
             {
                 return NotFound();
             }
+            item.Administrador = _context.Administradores.Find(item.AdministradorId);
             return item;
         }
 

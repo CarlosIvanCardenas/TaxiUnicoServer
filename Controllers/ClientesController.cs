@@ -35,10 +35,11 @@ namespace TaxiUnicoServer.Controllers
             return item;
         }
 
-        [HttpGet("email/{email}", Name = "GetClienteByEmail")]
+        [HttpGet("email/{email}")]
         public ActionResult<Cliente> GetByEmail(string email)
         {
             var item = _context.Clientes.SingleOrDefault(x => x.Correo == email);
+            Console.WriteLine($"Entro: {item}");
             if (item == null)
             {
                 return NotFound();
