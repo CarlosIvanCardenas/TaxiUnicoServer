@@ -46,6 +46,17 @@ namespace TaxiUnicoServer.Controllers
             return item;
         }
 
+        [HttpGet("login/{email}/{password}", Name = "AdminLogin")]
+        public ActionResult<Administrador> Login(string email, string password)
+        {
+            var item = _context.Administradores.SingleOrDefault(x => x.Correo == email && x.Contraseña == password);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return item;
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] Administrador item)
         {
