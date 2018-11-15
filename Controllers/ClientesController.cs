@@ -81,7 +81,7 @@ namespace TaxiUnicoServer.Controllers
         [HttpGet("login/{email}/{password}", Name = "ClienteLogin")]
         public ActionResult<Cliente> Login(string email, string password)
         {
-            var item = _context.Cliente.SingleOrDefault(x => x.Correo == email && x.Contraseña == password);
+            var item = _context.Clientes.SingleOrDefault(x => x.Correo == email && x.Contraseña == password);
             if (item == null)
             {
                 return NotFound();
