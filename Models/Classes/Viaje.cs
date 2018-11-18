@@ -44,7 +44,6 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public string FormaPago { get; set; }
 
-        [Required]
         public string Estatus { get; set; }
     }
 }
