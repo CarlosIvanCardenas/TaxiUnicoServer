@@ -18,8 +18,6 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public string PrimerNombre { get; set; }
 
-        public string SegundoNombre { get; set; }
-
         [Required]
         public string Apellidos { get; set; }
 
@@ -29,5 +27,8 @@ namespace TaxiUnicoServer.Models.Classes
         public string Direccion { get; set; }
 
 	    public string Estatus { get; set; }
+
+        [Column(TypeName = "decimal(2, 1)")]
+        public decimal Puntuacion { get; set; }
     }
 }

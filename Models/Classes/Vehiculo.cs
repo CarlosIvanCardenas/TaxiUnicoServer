@@ -27,5 +27,7 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public string Color { get; set; }
         public string PolizaSeguro { get; set; }
+
+        public string Estatus { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace TaxiUnicoServer.Controllers
     public class TaxistasController : ControllerBase
     {
         private DataContext _context;
+
         public TaxistasController(DataContext context)
         {
             _context = context;
@@ -68,7 +69,6 @@ namespace TaxiUnicoServer.Controllers
             taxista.Correo = item.Correo;
             taxista.Contraseña =  item.Contraseña;
             taxista.PrimerNombre = item.PrimerNombre;
-            taxista.SegundoNombre = item.SegundoNombre;
             taxista.Telefono = item.Telefono;
             taxista.Direccion = item.Direccion;
             taxista.FechaModificado = DateTime.Now;

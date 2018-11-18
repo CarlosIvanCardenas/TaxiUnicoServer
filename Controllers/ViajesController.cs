@@ -13,6 +13,7 @@ namespace TaxiUnicoServer.Controllers
     public class ViajesController : ControllerBase
     {
         private DataContext _context;
+
         public ViajesController(DataContext context)
         {
             _context = context;
@@ -93,8 +94,31 @@ namespace TaxiUnicoServer.Controllers
         {
             _context.Viajes.Add(item);
             _context.SaveChanges();
-
+            
             return CreatedAtRoute("GetViajeById", new { id = item.Id }, item);
+        }
+
+        [HttpGet("pendientes")]
+        public ActionResult<List<Viaje>> GetPendientes()
+        {
+            var pendientes = _context.Viajes.Where(x => x.Estatus == "Pendiente").ToList();
+            return pendientes;
+        }
+
+        [HttpPut("pendientes/{id}")]
+        public IActionResult Update(Guid id, Viaje item)
+        {
+            var viaje = _context.Viajes.Find(id);
+            if (viaje == null)
+            {
+                return NotFound();
+            }
+
+            viaje.VehiculoId = item.VehiculoId; 
+
+            _context.Viajes.Update(viaje);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }

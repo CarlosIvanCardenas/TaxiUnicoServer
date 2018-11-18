@@ -52,6 +52,12 @@ namespace TaxiUnicoServer.Controllers
             return _context.Vehiculos.Where(x => x.TaxistaId == taxista).ToList();
         }
 
+        [HttpGet("taxista/actual/{taxista}")]
+        public ActionResult<Vehiculo> GetActual(Guid taxista)
+        {
+            return _context.Vehiculos.Where(x => x.TaxistaId == taxista && x.Estatus == "Actual").FirstOrDefault();
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] Vehiculo item)
         {

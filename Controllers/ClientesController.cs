@@ -68,7 +68,6 @@ namespace TaxiUnicoServer.Controllers
             client.Correo = item.Correo;
             client.Contraseña =  item.Contraseña;
             client.PrimerNombre = item.PrimerNombre;
-            client.SegundoNombre = item.SegundoNombre;
             client.Telefono = item.Telefono;
             client.Direccion = item.Direccion;
             client.Estatus = item.Estatus;

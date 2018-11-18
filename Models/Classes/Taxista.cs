@@ -18,8 +18,6 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public string PrimerNombre { get; set; }
 
-        public string SegundoNombre { get; set; }
-
         [Required]
         public string Apellidos { get; set; }
 
