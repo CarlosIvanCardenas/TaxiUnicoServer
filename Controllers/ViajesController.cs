@@ -115,6 +115,7 @@ namespace TaxiUnicoServer.Controllers
             }
 
             viaje.VehiculoId = item.VehiculoId; 
+            viaje.Estatus = "En progreso";
 
             _context.Viajes.Update(viaje);
             _context.SaveChanges();
