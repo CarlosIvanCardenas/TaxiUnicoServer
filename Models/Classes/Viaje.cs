@@ -21,10 +21,8 @@ namespace TaxiUnicoServer.Models.Classes
         [Required]
         public DateTime HoraSolicitud { get; set; }
 
-        [Required]
         public DateTime HoraPartida { get; set; }
 
-        [Required]
         public DateTime HoraLlegada { get; set; }
 
         public Guid VehiculoId { get; set; }
