@@ -101,7 +101,11 @@ namespace TaxiUnicoServer.Controllers
         [HttpGet("pendientes")]
         public ActionResult<List<Viaje>> GetPendientes()
         {
-            var pendientes = _context.Viajes.Where(x => x.Estatus == "Pendiente").Include(x => x.Cliente).ToList();
+            var pendientes = _context.Viajes.Where(x => x.Estatus == "Pendiente")
+                            .Include(x => x.Cliente)
+                            .Include(x => x.Vehiculo)
+                                .ThenInclude(x => x.Taxista)
+                            .ToList();
             return pendientes;
         }
 
