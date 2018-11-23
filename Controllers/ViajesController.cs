@@ -105,7 +105,7 @@ namespace TaxiUnicoServer.Controllers
             return pendientes;
         }
 
-        [HttpPut("pendientes/{id}")]
+        [HttpPut("{id}")]
         public IActionResult Update(Guid id, Viaje item)
         {
             var viaje = _context.Viajes.Find(id);
@@ -115,7 +115,9 @@ namespace TaxiUnicoServer.Controllers
             }
 
             viaje.VehiculoId = item.VehiculoId; 
-            viaje.Estatus = "En progreso";
+            viaje.Estatus = item.Estatus;
+            viaje.HoraPartida = item.HoraPartida;
+            viaje.HoraLlegada = item.HoraLlegada;
 
             _context.Viajes.Update(viaje);
             _context.SaveChanges();
