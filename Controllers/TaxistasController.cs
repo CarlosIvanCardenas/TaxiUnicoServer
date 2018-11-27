@@ -69,6 +69,7 @@ namespace TaxiUnicoServer.Controllers
             taxista.Correo = item.Correo;
             taxista.Contraseña =  item.Contraseña;
             taxista.PrimerNombre = item.PrimerNombre;
+            taxista.Apellidos = item.Apellidos;
             taxista.Telefono = item.Telefono;
             taxista.Direccion = item.Direccion;
             taxista.FechaModificado = DateTime.Now;
