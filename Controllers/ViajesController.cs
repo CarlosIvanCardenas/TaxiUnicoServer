@@ -28,7 +28,11 @@ namespace TaxiUnicoServer.Controllers
         [HttpGet("{id}", Name = "GetViajeById")]
         public ActionResult<Viaje> GetById(Guid id)
         {
-            var item = _context.Viajes.Find(id);
+            var item = _context.Viajes
+                        .Include(x => x.Cliente)
+                        .Include(x => x.Vehiculo)
+                            .ThenInclude(x => x.Taxista)
+                        .SingleOrDefault(x => x.Id == id);
             if (item == null)
             {
                 return NotFound();
